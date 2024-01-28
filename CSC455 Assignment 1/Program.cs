@@ -60,11 +60,7 @@ namespace CSC455_Assignment_1
             while (keepRunning)
             {
                 // Display options/console menu
-                Console.WriteLine("1) Random Integer");
-                Console.WriteLine("2) Today's Date");
-                Console.WriteLine("3) Dino Names");
-                Console.WriteLine("4) Random String Action");
-                Console.WriteLine("Q) Quit");
+                Console.WriteLine("1) Random Integer\n2) Today's Date\n3) Dino Names\n4) Random String Action\nQ) Quit");
                 Console.Write("Please select an option: ");
 
                 // Read from user
@@ -115,7 +111,7 @@ namespace CSC455_Assignment_1
 
                         // Prompt input
                         Console.Write("Please enter a string: ");
-                        string userInput2 = Console.ReadLine();
+                        string inputString = Console.ReadLine();
 
                         // Potential Actions to be performed
                         var randomAction = new List<Func<string, string>>
@@ -127,8 +123,9 @@ namespace CSC455_Assignment_1
                             str => str.EndsWith(".") ? "You have correct punctuation, nice!" : "You forgot a '.' at the end!",
                             str => str.Length.ToString(), // Return length
                             str => str.Replace(" ", ""), // Remove spaces
-                            str => new string(str.Distinct().ToArray()),
                             str => str.PadLeft(15, '*'),
+                            str => $"Sum of ASCII values of input: {str.Sum(c => (int)c)}",
+                            str => $"Unique characters: {new string(str.Distinct().ToArray())}",
                         };
 
 
@@ -136,9 +133,9 @@ namespace CSC455_Assignment_1
                         Random random3 = new Random();
                         int randomIndex = random3.Next(randomAction.Count);
 
-                        string result = randomAction[randomIndex](userInput2);
+                        string result = randomAction[randomIndex](inputString);
 
-                        Console.WriteLine($"{result}\n");
+                        Console.WriteLine($"Action #{randomIndex} {result}\n");
 
                         break;
 
