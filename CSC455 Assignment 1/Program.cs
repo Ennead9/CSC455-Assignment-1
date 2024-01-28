@@ -101,8 +101,9 @@ namespace CSC455_Assignment_1
                         // Random dino name with the chosen list element based upon a random number
                         Random random2 = new Random();
                         int randIndex = random2.Next(dinoList.Count);
-                        Dino randomDino = dinoList[randIndex];
-                        Console.WriteLine($"{randomDino}");
+
+                        Dino dino = dinoList.ElementAt(randIndex);
+                        Console.WriteLine($"{dino.Name}");
 
                         break;
 
