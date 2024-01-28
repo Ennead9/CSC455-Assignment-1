@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,13 @@ namespace CSC455_Assignment_1
             Diet = diet;
         }
 
+        // Override ToString to simply return the Dino's name
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        //Generate list of Dinos
         public static List<Dino> GenerateDinos()
         {
             return new List<Dino>
@@ -48,6 +56,7 @@ namespace CSC455_Assignment_1
             // Welcome message
             Console.WriteLine("Welcome! Please select an option (or press 'Q' to quit)");
 
+            // Loop to let user keep interacting until finished
             while (keepRunning)
             {
                 // Display options/console menu
@@ -88,16 +97,16 @@ namespace CSC455_Assignment_1
                     
                     // Dino Names
                     case "3":
-                        List<Dino> dinoList = Dino.GenerateDinos();
                         
-                        // Order by name using LINQ
+                        // Create list & order by name using LINQ
+                        List<Dino> dinoList = Dino.GenerateDinos();
                         dinoList = dinoList.OrderBy(a => a.Name).ToList();
 
-                        // Print ordered list out to console
-                        foreach (var dino in dinoList)
-                            Console.WriteLine($"{dino.Name}");
-
-                        Console.WriteLine("\n");
+                        // Random dino name with the chosen list element based upon a random number
+                        Random random2 = new Random();
+                        int randIndex = random2.Next(dinoList.Count);
+                        Dino randomDino = dinoList[randIndex];
+                        Console.WriteLine($"{randomDino}");
 
                         break;
 
@@ -107,8 +116,13 @@ namespace CSC455_Assignment_1
 
                     // Quit
                     case "Q":
+                    case "q":
                         Console.WriteLine("Goodbye!");
                         keepRunning = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Please enter a valid option\n");
                         break;
                 }
             }
