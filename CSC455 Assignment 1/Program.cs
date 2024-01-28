@@ -21,12 +21,6 @@ namespace CSC455_Assignment_1
             Diet = diet;
         }
 
-        // Override ToString to simply return the Dino's name
-        public override string ToString()
-        {
-            return Name;
-        }
-
         //Generate list of Dinos
         public static List<Dino> GenerateDinos()
         {
@@ -42,15 +36,17 @@ namespace CSC455_Assignment_1
                 new Dino("Triceratops", "Cretaceous", "Herbivore"),
                 new Dino("Utahraptor", "Cretaceous", "Carnivore"),
                 new Dino("Tyrannosaurus", "Cretaceous", "Carnivore"),
-                
             };
         }
     }
     internal class Program
     {
+        // Random instance
+        private static Random rnd = new Random();
+
         static void Main(string[] args)
         {
-            Random rnd = new Random();  // Prep for random numbers
+
             bool keepRunning = true;    // Bool for exiting menu loop
 
             // Welcome message
@@ -63,19 +59,20 @@ namespace CSC455_Assignment_1
                 Console.WriteLine("1) Random Integer\n2) Today's Date\n3) Dino Names\n4) Random String Action\nQ) Quit");
                 Console.Write("Please select an option: ");
 
-                // Read from user
+                // Read option from user
                 string userInput = Console.ReadLine();
                 Console.WriteLine();
 
-                // Handle input
+                // Handle input (repeatedly)
                 switch (userInput)
                 {
                     // Random integer from 1 to 10
                     case "1":
-                        int randomInt = rnd.Next(1, 11); // Generate int
-                        Console.WriteLine("Drum roll please...");
+                        int randomInt = rnd.Next(1, 11);
+
                         // Drum roll for fun
-                        for(int i = 0; i < 4; i++)
+                        Console.WriteLine("Drum roll please...");
+                        for(int i = 0; i < 2; i++)
                         {
                             Console.Write(". ");
                             Thread.Sleep(400);
@@ -91,31 +88,29 @@ namespace CSC455_Assignment_1
 
                         break;
                     
-                    // Dino Names
+                    // List of 10 Dino Names
                     case "3":
                         
                         // Create list & order by name using LINQ
                         List<Dino> dinoList = Dino.GenerateDinos();
                         dinoList = dinoList.OrderBy(a => a.Name).ToList();
 
-                        // Random dino name with the chosen list element based upon a random number
-                        Random random2 = new Random();
-                        int randIndex = random2.Next(dinoList.Count);
-
+                        // Output random dino name
+                        int randIndex = rnd.Next(dinoList.Count);
                         Dino dino = dinoList.ElementAt(randIndex);
-                        Console.WriteLine($"{dino.Name}");
+                        Console.WriteLine($"{dino.Name}\n");
 
                         break;
 
-                    // Random String Action
+                    // Read a string & perform a random action on it
                     case "4":
 
                         // Prompt input
                         Console.Write("Please enter a string: ");
                         string inputString = Console.ReadLine();
 
-                        // Potential Actions to be performed
-                        var randomAction = new List<Func<string, string>>
+                        // Potential actions to be performed
+                        var randomActions = new List<Func<string, string>>
                         {
                             str => new string(str.Reverse().ToArray()), // Reverse string
                             str => str.ToLower(), // Make all lowercase
@@ -129,14 +124,10 @@ namespace CSC455_Assignment_1
                             str => $"Unique characters: {new string(str.Distinct().ToArray())}",
                         };
 
-
-                        // Perform random action on input string
-                        Random random3 = new Random();
-                        int randomIndex = random3.Next(randomAction.Count);
-
-                        string result = randomAction[randomIndex](inputString);
-
-                        Console.WriteLine($"Action #{randomIndex} {result}\n");
+                        // Perform random action on input string & output resultant string
+                        int randomIndex = rnd.Next(randomActions.Count);
+                        string result = randomActions[randomIndex](inputString);
+                        Console.WriteLine($"{result}\n");
 
                         break;
 
