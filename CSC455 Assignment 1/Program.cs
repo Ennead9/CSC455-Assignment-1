@@ -112,6 +112,34 @@ namespace CSC455_Assignment_1
 
                     // Random String Action
                     case "4":
+
+                        // Prompt input
+                        Console.Write("Please enter a string: ");
+                        string userInput2 = Console.ReadLine();
+
+                        // Potential Actions to be performed
+                        var randomAction = new List<Func<string, string>>
+                        {
+                            str => new string(str.Reverse().ToArray()), // Reverse string
+                            str => str.ToLower(), // Make all lowercase
+                            str => str.ToUpper(), // Make all uppercase
+                            str => str.Contains("j") ? "Contains the letter 'j'" : "Does not contain the letter 'j'",
+                            str => str.EndsWith(".") ? "You have correct punctuation, nice!" : "You forgot a '.' at the end!",
+                            str => str.Length.ToString(), // Return length
+                            str => str.Replace(" ", ""), // Remove spaces
+                            str => new string(str.Distinct().ToArray()),
+                            str => str.PadLeft(15, '*'),
+                        };
+
+
+                        // Perform random action on input string
+                        Random random3 = new Random();
+                        int randomIndex = random3.Next(randomAction.Count);
+
+                        string result = randomAction[randomIndex](userInput2);
+
+                        Console.WriteLine($"{result}\n");
+
                         break;
 
                     // Quit
