@@ -44,5 +44,27 @@ namespace CSC455_Assignment_1.Tests
             var dinos = Program.CreateDinoList();
             Assert.AreEqual(10, dinos.Count);
         }
+        [TestMethod()]
+        public void SortDinoListTest()
+        {
+            // Arrange & Act
+            var unsortedDinos = Program.CreateDinoList();
+            var sortedDinos = Program.SortDinoList(unsortedDinos);
+            var expectedOrder = unsortedDinos.OrderBy(d => d.Name).ToList();
+            
+            // Assert
+            CollectionAssert.AreEqual(expectedOrder, sortedDinos);
+        }
+        [TestMethod()]
+        public void RandomDinoNameTest()
+        {
+            // Arrange & Act
+            var dinos = Program.CreateDinoList();
+            var randomIndex = Program.RandomIndex(dinos);
+            var name = Program.RandomDinoName(dinos, randomIndex);
+
+            // Assert
+            Assert.IsTrue(dinos.Select(d => d.Name).Contains(name));
+        }
     }
 }
