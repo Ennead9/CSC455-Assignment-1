@@ -137,5 +137,20 @@ namespace CSC455_Assignment_1.Tests
             // Assert
             Assert.AreEqual(expectedResult, result);
         }
+        [TestMethod()]
+        public void UniqueCharsTest()
+        {
+            // Arrange
+            var inputString = "dinosaur";
+            var expectedResult = "Unique characters: dinosaur";
+            var actions = Program.GenerateRandomDinoActions();
+            var sumASCIIAction = actions[9];
+
+            // Act
+            var result = sumASCIIAction(inputString);
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
     }
 }
