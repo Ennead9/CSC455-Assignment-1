@@ -101,16 +101,15 @@ namespace CSC455_Assignment_1.Tests
 
         }
         [TestMethod()]
-        public void Test()
+        public void EndsWithTest()
         {
             // Arrange & Act
             var actions = Program.GenerateRandomDinoActions();
-            var upperCaseAction = actions[2];
-            var result = upperCaseAction("dino name");
+            var endsWithAction = actions[4];
+            string result = endsWithAction("Testing");
 
             // Assert
-            Assert.AreEqual("DINO NAME", result);
-
+            Assert.AreEqual(result, "You forgot a '.' at the end!");
         }
     }
 }
