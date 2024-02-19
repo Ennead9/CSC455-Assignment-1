@@ -104,7 +104,7 @@ namespace CSC455_Assignment_1
                         //dinoList = dinoList.OrderBy(a => a.Name).ToList();
 
                         // Output random dino name
-                        PrintRandomDinoName(RandomDinoName(dinoList));
+                        Print(RandomDinoName(dinoList, RandomIndex(dinoList)));
                         
                         //int randIndex = rnd.Next(dinoList.Count);
                         //Dino dino = dinoList.ElementAt(randIndex);
@@ -116,11 +116,14 @@ namespace CSC455_Assignment_1
                     case "4":
 
                         // Prompt input
-                        Console.Write("Please enter a string: ");
-                        string inputString = Console.ReadLine();
+                        //Console.Write("Please enter a string: ");
+                        //string inputString = Console.ReadLine();
+
+                        // Prompt & Take Input
+                        string inputString = ReceiveInput();
 
                         // Potential actions to be performed
-                        var randomActions = new List<Func<string, string>>
+                        /*var randomActions = new List<Func<string, string>>
                         {
                             str => new string(str.Reverse().ToArray()), // Reverse string
                             str => str.ToLower(), // Make all lowercase
@@ -132,12 +135,17 @@ namespace CSC455_Assignment_1
                             str => str.PadLeft(15, '*'),
                             str => $"Sum of ASCII values of input: {str.Sum(c => (int)c)}",
                             str => $"Unique characters: {new string(str.Distinct().ToArray())}",
-                        };
+                        };*/
 
                         // Perform random action on input string & output resultant string
-                        int randomIndex = rnd.Next(randomActions.Count);
-                        string result = randomActions[randomIndex](inputString);
-                        Console.WriteLine($"{result}\n");
+                        Print(PerformRandomAction(GenerateRandomDinoActions(), inputString, RandomIndex(GenerateRandomDinoActions())));
+
+
+                        //int randomIndex = rnd.Next(randomActions.Count);
+                        //string result = randomActions[randomIndex](inputString);
+                        //Console.WriteLine($"{result}\n");
+
+
 
                         break;
 
@@ -193,15 +201,46 @@ namespace CSC455_Assignment_1
         {
             return dinoList.OrderBy(a => a.Name).ToList();
         }
-        public static string RandomDinoName(List<Dino> dinoList)
+        public static int RandomIndex<T>(List<T> list)
         {
-            int randIndex = rnd.Next(dinoList.Count);
+            return rnd.Next(list.Count);
+        }
+        public static string RandomDinoName(List<Dino> dinoList, int randIndex)
+        {
             Dino dino = dinoList.ElementAt(randIndex);
             return dino.Name;
         }
-        public static void PrintRandomDinoName(string randomDinoName)
+        public static void Print(string textString)
         {
-            Console.WriteLine($"{randomDinoName}\n");
+            Console.WriteLine($"{textString}\n");
         }
+        public static string ReceiveInput()
+        {
+            Console.Write("Please enter a string: ");
+            return Console.ReadLine();
+        }
+        public static List<Func<string, string>> GenerateRandomDinoActions()
+        {
+            // Potential actions to be performed
+            var randomActions = new List<Func<string, string>>
+            {
+                str => new string(str.Reverse().ToArray()), // Reverse string
+                str => str.ToLower(), // Make all lowercase
+                str => str.ToUpper(), // Make all uppercase
+                str => str.Contains("j") ? "Contains the letter 'j'" : "Does not contain the letter 'j'",
+                str => str.EndsWith(".") ? "You have correct punctuation, nice!" : "You forgot a '.' at the end!",
+                str => str.Length.ToString(), // Return length
+                str => str.Replace(" ", ""), // Remove spaces
+                str => str.PadLeft(15, '*'),
+                str => $"Sum of ASCII values of input: {str.Sum(c => (int)c)}",
+                str => $"Unique characters: {new string(str.Distinct().ToArray())}",
+            };
+            return randomActions;
+        }
+        public static string PerformRandomAction(List<Func<string, string>> randomActions, string inputString, int randIndex)
+        {
+            return randomActions[randIndex](inputString);
+        }
+
     }
 }
