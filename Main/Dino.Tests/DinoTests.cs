@@ -66,6 +66,7 @@ namespace CSC455_Assignment_1.Tests
             // Assert
             Assert.IsTrue(dinos.Select(d => d.Name).Contains(name));
         }
+        [TestMethod()]
         public void RandomStringAction_MakeAllLowercase()
         {
             // Arrange & Act
@@ -76,6 +77,7 @@ namespace CSC455_Assignment_1.Tests
             // Assert
             Assert.AreEqual("dino name", result);
         }
+        [TestMethod()]
         public void RandomStringAction_MakeAllUppercase()
         {
             // Arrange & Act
@@ -86,6 +88,29 @@ namespace CSC455_Assignment_1.Tests
             // Assert
             Assert.AreEqual("DINO NAME", result);
         }
+        [TestMethod()]
+        public void ContainsTest()
+        {
+            // Arrange & Act
+            var actions = Program.GenerateRandomDinoActions();
+            var containsAction = actions[3];
+            string result = containsAction("Testing");
 
+            // Assert
+            Assert.AreEqual(result, "Does not contain the letter 'j'");
+
+        }
+        [TestMethod()]
+        public void Test()
+        {
+            // Arrange & Act
+            var actions = Program.GenerateRandomDinoActions();
+            var upperCaseAction = actions[2];
+            var result = upperCaseAction("dino name");
+
+            // Assert
+            Assert.AreEqual("DINO NAME", result);
+
+        }
     }
 }
