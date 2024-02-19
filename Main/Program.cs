@@ -85,9 +85,11 @@ namespace CSC455_Assignment_1
                     
                     // Today's Date in Short Date String format
                     case "2":
-                        DateTime date = DateTime.Now;
-                        var shortDate = date.ToShortDateString();
-                        Console.WriteLine($"Today's date is: {shortDate}\n");
+
+                        PrintTodaysDate(ConvertDateToString(GetTodaysDate()));
+                        //DateTime date = DateTime.Now;
+                        //var shortDate = date.ToShortDateString();
+                        //Console.WriteLine($"Today's date is: {shortDate}\n");
 
                         break;
                     
@@ -165,6 +167,18 @@ namespace CSC455_Assignment_1
                 Console.Write(". ");
                 Thread.Sleep(timeToWaste);
             }
+        }
+        public static DateTime GetTodaysDate()
+        {
+            return DateTime.Now;
+        }
+        public static string ConvertDateToString(DateTime date)
+        {
+            return date.ToShortDateString();
+        }
+        public static void PrintTodaysDate(string shortDate)
+        {
+            Console.WriteLine($"Today's date is: {shortDate}\n");
         }
 
     }
