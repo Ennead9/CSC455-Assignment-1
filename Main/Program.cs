@@ -68,16 +68,19 @@ namespace CSC455_Assignment_1
                 {
                     // Random integer from 1 to 10
                     case "1":
-                        int randomInt = rnd.Next(1, 11);
+                        int randomInt = GenerateRandomInt(1, 11);
+
+                        DrumRoll(400);
+                        DisplayRandomInt(randomInt);
 
                         // Drum roll for fun
-                        Console.WriteLine("Drum roll please...");
-                        for(int i = 0; i < 2; i++)
+                        //Console.WriteLine("Drum roll please...");
+                        /*for(int i = 0; i < 2; i++)
                         {
                             Console.Write(". ");
                             Thread.Sleep(400);
-                        }
-                        Console.WriteLine($"\nYour lucky number is: {randomInt}\n");
+                        }*/
+                        //Console.WriteLine($"\nYour lucky number is: {randomInt}\n");
                         break;
                     
                     // Today's Date in Short Date String format
@@ -145,5 +148,24 @@ namespace CSC455_Assignment_1
             }
 
         }
+
+        public static int GenerateRandomInt(int min, int max)
+        {
+            return rnd.Next(min, max);
+        }
+        public static void DisplayRandomInt(int randomInt)
+        {
+            Console.WriteLine($"\nYour lucky number is: {randomInt}\n");
+        }
+        public static void DrumRoll(int timeToWaste)
+        {
+            Console.WriteLine("Drum roll please...");
+            for (int i = 0; i < 2; i++)
+            {
+                Console.Write(". ");
+                Thread.Sleep(timeToWaste);
+            }
+        }
+
     }
 }
