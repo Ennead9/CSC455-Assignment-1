@@ -122,5 +122,20 @@ namespace CSC455_Assignment_1.Tests
             // Assert
             Assert.AreEqual(result, "7");
         }
+        [TestMethod()]
+        public void SumASCIITest()
+        {
+            // Arrange
+            var inputString = "abc"; // Sum = 294?
+            var expectedResult = "Sum of ASCII values of input: 294";
+            var actions = Program.GenerateRandomDinoActions();
+            var sumASCIIAction = actions[8];
+            
+            // Act
+            var result = sumASCIIAction(inputString);
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
     }
 }
