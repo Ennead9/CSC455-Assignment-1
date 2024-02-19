@@ -39,7 +39,7 @@ namespace CSC455_Assignment_1
             };
         }
     }
-    internal class Program
+    public class Program
     {
         // Random instance
         private static Random rnd = new Random();

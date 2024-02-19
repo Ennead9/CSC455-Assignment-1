@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSC455 Assignment 1", "CSC455 Assignment 1.csproj", "{81F5EC4B-FA98-4CAF-82A2-B9D396A09156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dino.Tests", "Dino.Tests\Dino.Tests.csproj", "{1AD5B0DF-9882-424A-8360-543866ED0B1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSC455_Assignment_1.Tests", "Dino.Tests\CSC455_Assignment_1.Tests.csproj", "{1AD5B0DF-9882-424A-8360-543866ED0B1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
