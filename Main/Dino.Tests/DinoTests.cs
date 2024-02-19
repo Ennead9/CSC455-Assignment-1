@@ -1,4 +1,5 @@
 using FluentAssertions;
+using System.Globalization;
 
 namespace CSC455_Assignment_1.Tests
 {
@@ -30,13 +31,15 @@ namespace CSC455_Assignment_1.Tests
         {
             // Arrange
             var date = new DateTime(year, month, day);
-            var expected = date.ToShortDateString();
+            var expectedFormat = @"^\d{1,2}/\d{1,2}/\d{4}$"; // Format MM/dd/YYYY?
+            var regionalInfo = new System.Globalization.CultureInfo("en-US");
+            var expected = date.ToString("M/d/yyyy", regionalInfo);
 
             // Act
             var result = Program.ConvertDateToString(date);
 
             // Assert
-            StringAssert.Matches(result, new System.Text.RegularExpressions.Regex(@"\d{1,2}\/\d{1,2}\/\d{4}"));
+            StringAssert.Matches(result, new System.Text.RegularExpressions.Regex(expectedFormat));
         }
         [TestMethod()]
         public void GenerateDinosTest()
