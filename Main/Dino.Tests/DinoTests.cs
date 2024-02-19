@@ -66,5 +66,26 @@ namespace CSC455_Assignment_1.Tests
             // Assert
             Assert.IsTrue(dinos.Select(d => d.Name).Contains(name));
         }
+        public void RandomStringAction_MakeAllLowercase()
+        {
+            // Arrange & Act
+            var actions = Program.GenerateRandomDinoActions();
+            var lowerCaseAction = actions[1];
+            var result = lowerCaseAction("DINO NAME");
+
+            // Assert
+            Assert.AreEqual("dino name", result);
+        }
+        public void RandomStringAction_MakeAllUppercase()
+        {
+            // Arrange & Act
+            var actions = Program.GenerateRandomDinoActions();
+            var upperCaseAction = actions[2];
+            var result = upperCaseAction("dino name");
+
+            // Assert
+            Assert.AreEqual("DINO NAME", result);
+        }
+
     }
 }
