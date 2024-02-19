@@ -34,6 +34,15 @@ namespace CSC455_Assignment_1.Tests
 
             // Act
             var result = Program.ConvertDateToString(date);
+
+            // Assert
+            StringAssert.Matches(result, new System.Text.RegularExpressions.Regex(@"\d{1,2}\/\d{1,2}\/\d{4}"));
+        }
+        [TestMethod()]
+        public void GenerateDinosTest()
+        {
+            var dinos = Program.CreateDinoList();
+            Assert.AreEqual(10, dinos.Count);
         }
     }
 }
