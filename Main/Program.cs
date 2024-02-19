@@ -70,26 +70,17 @@ namespace CSC455_Assignment_1
                     case "1":
                         int randomInt = GenerateRandomInt(1, 11);
 
+                        // Drum roll for fun
                         DrumRoll(400);
                         DisplayRandomInt(randomInt);
 
-                        // Drum roll for fun
-                        //Console.WriteLine("Drum roll please...");
-                        /*for(int i = 0; i < 2; i++)
-                        {
-                            Console.Write(". ");
-                            Thread.Sleep(400);
-                        }*/
-                        //Console.WriteLine($"\nYour lucky number is: {randomInt}\n");
                         break;
                     
                     // Today's Date in Short Date String format
                     case "2":
 
+                        // Very condensed calls to print date after converting
                         PrintTodaysDate(ConvertDateToString(GetTodaysDate()));
-                        //DateTime date = DateTime.Now;
-                        //var shortDate = date.ToShortDateString();
-                        //Console.WriteLine($"Today's date is: {shortDate}\n");
 
                         break;
                     
@@ -100,52 +91,20 @@ namespace CSC455_Assignment_1
                         List<Dino> dinoList = CreateDinoList();
                         dinoList = SortDinoList(dinoList);
 
-                        //List<Dino> dinoList = Dino.GenerateDinos();
-                        //dinoList = dinoList.OrderBy(a => a.Name).ToList();
-
                         // Output random dino name
                         Print(RandomDinoName(dinoList, RandomIndex(dinoList)));
                         
-                        //int randIndex = rnd.Next(dinoList.Count);
-                        //Dino dino = dinoList.ElementAt(randIndex);
-                        //Console.WriteLine($"{dino.Name}\n");
 
                         break;
 
                     // Read a string & perform a random action on it
                     case "4":
 
-                        // Prompt input
-                        //Console.Write("Please enter a string: ");
-                        //string inputString = Console.ReadLine();
-
                         // Prompt & Take Input
                         string inputString = ReceiveInput();
 
-                        // Potential actions to be performed
-                        /*var randomActions = new List<Func<string, string>>
-                        {
-                            str => new string(str.Reverse().ToArray()), // Reverse string
-                            str => str.ToLower(), // Make all lowercase
-                            str => str.ToUpper(), // Make all uppercase
-                            str => str.Contains("j") ? "Contains the letter 'j'" : "Does not contain the letter 'j'",
-                            str => str.EndsWith(".") ? "You have correct punctuation, nice!" : "You forgot a '.' at the end!",
-                            str => str.Length.ToString(), // Return length
-                            str => str.Replace(" ", ""), // Remove spaces
-                            str => str.PadLeft(15, '*'),
-                            str => $"Sum of ASCII values of input: {str.Sum(c => (int)c)}",
-                            str => $"Unique characters: {new string(str.Distinct().ToArray())}",
-                        };*/
-
                         // Perform random action on input string & output resultant string
                         Print(PerformRandomAction(GenerateRandomDinoActions(), inputString, RandomIndex(GenerateRandomDinoActions())));
-
-
-                        //int randomIndex = rnd.Next(randomActions.Count);
-                        //string result = randomActions[randomIndex](inputString);
-                        //Console.WriteLine($"{result}\n");
-
-
 
                         break;
 
