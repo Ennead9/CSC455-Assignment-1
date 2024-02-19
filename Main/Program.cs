@@ -95,15 +95,20 @@ namespace CSC455_Assignment_1
                     
                     // List of 10 Dino Names
                     case "3":
-                        
+
                         // Create list & order by name using LINQ
-                        List<Dino> dinoList = Dino.GenerateDinos();
-                        dinoList = dinoList.OrderBy(a => a.Name).ToList();
+                        List<Dino> dinoList = CreateDinoList();
+                        dinoList = SortDinoList(dinoList);
+
+                        //List<Dino> dinoList = Dino.GenerateDinos();
+                        //dinoList = dinoList.OrderBy(a => a.Name).ToList();
 
                         // Output random dino name
-                        int randIndex = rnd.Next(dinoList.Count);
-                        Dino dino = dinoList.ElementAt(randIndex);
-                        Console.WriteLine($"{dino.Name}\n");
+                        PrintRandomDinoName(RandomDinoName(dinoList));
+                        
+                        //int randIndex = rnd.Next(dinoList.Count);
+                        //Dino dino = dinoList.ElementAt(randIndex);
+                        //Console.WriteLine($"{dino.Name}\n");
 
                         break;
 
@@ -180,6 +185,23 @@ namespace CSC455_Assignment_1
         {
             Console.WriteLine($"Today's date is: {shortDate}\n");
         }
-
+        public static List<Dino> CreateDinoList()
+        {
+            return Dino.GenerateDinos();
+        }
+        public static List<Dino> SortDinoList(List<Dino> dinoList)
+        {
+            return dinoList.OrderBy(a => a.Name).ToList();
+        }
+        public static string RandomDinoName(List<Dino> dinoList)
+        {
+            int randIndex = rnd.Next(dinoList.Count);
+            Dino dino = dinoList.ElementAt(randIndex);
+            return dino.Name;
+        }
+        public static void PrintRandomDinoName(string randomDinoName)
+        {
+            Console.WriteLine($"{randomDinoName}\n");
+        }
     }
 }
