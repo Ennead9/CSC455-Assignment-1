@@ -111,5 +111,16 @@ namespace CSC455_Assignment_1.Tests
             // Assert
             Assert.AreEqual(result, "You forgot a '.' at the end!");
         }
+        [TestMethod()]
+        public void LengthTest()
+        {
+            // Arrange & Act
+            var actions = Program.GenerateRandomDinoActions();
+            var lengthAction = actions[5];
+            string result = lengthAction("Testing");
+
+            // Assert
+            Assert.AreEqual(result, "7");
+        }
     }
 }
