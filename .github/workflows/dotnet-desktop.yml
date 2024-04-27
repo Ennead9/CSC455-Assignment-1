@@ -11,6 +11,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
+
+    - name: List directory contents
+      run: dir
+      working-directory: Main
+
     - name: Checkout Code
       uses: actions/checkout@v2
 
