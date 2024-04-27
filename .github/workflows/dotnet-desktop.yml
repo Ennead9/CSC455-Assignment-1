@@ -18,10 +18,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Restore NuGet packages
-      run: nuget restore "CS455 Assignment 1.1.sln"
+      run: nuget restore "CS455 Assignment 1.sln"
 
     - name: Build Solution
-      run: msbuild "CS455 Assignment 1.1.sln" /p:Configuration=Release
+      run: msbuild "CS455 Assignment 1.sln" /p:Configuration=Release
 
     - name: Run Tests
       run: |
