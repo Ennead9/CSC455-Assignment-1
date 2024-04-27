@@ -1,0 +1,29 @@
+name: .NET Core CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_and_test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '4.7.2' # Specify the .NET version your app targets
+
+    - name: Restore dependencies
+      run: dotnet restore "CS455 Assignment 1.1.sln"
+
+    - name: Build
+      run: dotnet build "CS455 Assignment 1.1.sln" --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test "Main/Dino.Tests/Dino.Tests.csproj" --no-restore --verbosity normal
